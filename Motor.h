@@ -18,6 +18,7 @@ class Motor {
 		void goFwd(void);
 		void goBck(void);
 		void stop(void);
-		Motor(uint8_t forward_pin, volatile uint8_t forward_port, uint8_t backard_pin, volatile uint8_t backward_port);
+		Motor(uint8_t forward_pin, volatile uint8_t *forward_port, uint8_t backard_pin, volatile uint8_t *backward_port);
+		Motor();
 };
 #endif

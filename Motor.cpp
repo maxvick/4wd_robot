@@ -1,12 +1,19 @@
 ﻿#include "Motor.h"
-#include <avr\io.h>
+#include <avr/io.h>
 
 
-Motor::Motor(uint8_t fwdPin, volatile uint8_t fwdPort, uint8_t bckPin, volatile uint8_t bckPort) {
+Motor::Motor(uint8_t fwdPin, volatile uint8_t *fwdPort, uint8_t bckPin, volatile uint8_t *bckPort) {
 	this->fwdPin = fwdPin;
 	this->fwdPort = fwdPort;
 	this->bckPin = bckPin;
 	this->bckPort = bckPort;
+}
+
+Motor::Motor() {
+	this->fwdPin = 0xFF;
+	this->fwdPort = nullptr;
+	this->bckPin = 0xFF;
+	this->bckPort = nullptr;
 }
 
 void Motor::stop() {

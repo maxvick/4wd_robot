@@ -16,7 +16,7 @@ int main(void)
 	//have master enable pins as well - only enable once all init finished?
 
 	//initialise the Robot object & it's motors
-	Motor FL = Motor(PORTD0, PORTD, PORTD1, PORTD);
+	Motor FL = Motor(PORTD0, &PORTD, PORTD1, &PORTD);
 	Motor FR = Motor(PORTD2, (uint8_t *)PORTD, PORTD3, (uint8_t *)PORTD);
 	Motor BL = Motor(PORTD4, (uint8_t *)PORTD, PORTD5, (uint8_t *)PORTD);
 	Motor BR = Motor(PORTD6, (uint8_t *)PORTD, PORTD7, (uint8_t *)PORTD);
