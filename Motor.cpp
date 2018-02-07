@@ -17,16 +17,16 @@ Motor::Motor() {
 }
 
 void Motor::stop() {
-	*fwdPort = *fwdPort && !(1 << this->fwdPin); //turn the correct pin off
-	*bckPort = *bckPort && !(1 << this->bckPin); //turn the correct pin off
+	*(this->fwdPort) = *(this->fwdPort) & ~(1 << this->fwdPin); //turn the correct pin off
+	*(this->bckPort) = *(this->bckPort) & ~(1 << this->bckPin); //turn the correct pin off
 }
 
 void Motor::goFwd() {
-	*fwdPort = *fwdPort || (1 << this->fwdPin); //turn the correct pin on
-	*bckPort = *bckPort && !(1 << this->bckPin); //turn the correct pin off
+	*(this->fwdPort) = *(this->fwdPort) | (1 << this->fwdPin); //turn the correct pin on
+	*(this->bckPort) = *(this->bckPort) & ~(1 << this->bckPin); //turn the correct pin off
 }
 
 void Motor::goBck() {
-	*bckPort = *bckPort || (1 << this->bckPin); //turn the correct pin on
-	*fwdPort = *fwdPort && !(1 << this->fwdPin); //turn the correct pin off
+	*(this->bckPort) = *(this->bckPort) | (1 << this->bckPin); //turn the correct pin on
+	*(this->fwdPort) = *(this->fwdPort) & ~(1 << this->fwdPin); //turn the correct pin off
 }

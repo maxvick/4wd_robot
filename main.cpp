@@ -17,11 +17,17 @@ int main(void)
 
 	//initialise the Robot object & it's motors
 	Motor FL = Motor(PORTD0, &PORTD, PORTD1, &PORTD);
-	Motor FR = Motor(PORTD2, (uint8_t *)PORTD, PORTD3, (uint8_t *)PORTD);
-	Motor BL = Motor(PORTD4, (uint8_t *)PORTD, PORTD5, (uint8_t *)PORTD);
-	Motor BR = Motor(PORTD6, (uint8_t *)PORTD, PORTD7, (uint8_t *)PORTD);
+	Motor FR = Motor(PORTD2, &PORTD, PORTD3, &PORTD);
+	Motor BL = Motor(PORTD4, &PORTD, PORTD5, &PORTD);
+	Motor BR = Motor(PORTD6, &PORTD, PORTD7, &PORTD);
 	Robot myBot = Robot(&FL, &FR, &BL, &BR);
 	myBot.setDirection(STOPPED, 0);
+	myBot.setDirection(FORWARDS, 10);
+	myBot.setDirection(FAST_LEFT, 10);
+	myBot.setDirection(SLOW_LEFT, 10);
+	myBot.setDirection(FAST_RIGHT, 10);
+	myBot.setDirection(SLOW_RIGHT, 10);
+	myBot.setDirection(STOPPED, 10);
 
 	//initialise the TWI & interrupt vector
 
