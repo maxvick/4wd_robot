@@ -14,7 +14,7 @@ class Robot {
 
 	public:
 		int getDirection(void);
-		void setDirection(Direction, int duration);
+		void setDirection(Direction, uint8_t duration);
 		Robot(Motor *frL, Motor *frR, Motor *bkL, Motor *bkR);
 
 };

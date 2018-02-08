@@ -12,6 +12,8 @@
 #include "Motor.h"
 #include "Robot.h"
 
+Robot *botPtr = nullptr;
+
 int main(void)
 {
     //initialise the output port
@@ -23,8 +25,6 @@ int main(void)
 	//enable timer 0
 	power_timer0_enable();
 	TCCR0B |= ((1 << CS02) | (1 << CS00)); //scale by 1024
-	TCNT0 = 0x01; //set the counter to maximum time
-	TIMSK0 |= (1 << TOIE0); //enable the interrupt mask
 
 	//enable the global interrupt mask
 	sei();
@@ -38,6 +38,7 @@ int main(void)
 	Motor BL = Motor(PORTD4, &PORTD, PORTD5, &PORTD);
 	Motor BR = Motor(PORTD6, &PORTD, PORTD7, &PORTD);
 	Robot myBot = Robot(&FL, &FR, &BL, &BR);
+	botPtr = &myBot;
 	myBot.setDirection(STOPPED, 0);
 	myBot.setDirection(FORWARDS, 10);
 	myBot.setDirection(FAST_LEFT, 10);
@@ -65,8 +66,9 @@ void forwards(int duration) {
 
 //Timer 0 overflow handler
 ISR(TIMER0_OVF_vect) {
-	int test = 5;
-	test += 66;
-	TIMSK0 &= ~(1 << TOIE0); // diable the mask
+	//call the stop method of global mybot
+	botPtr->setDirection(STOPPED, 0);
+
+	TIMSK0 &= ~(1 << TOIE0); // disable the mask
 }
 

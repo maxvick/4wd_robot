@@ -1,4 +1,5 @@
 ﻿#include "Robot.h"
+#include <avr/io.h>
 
 Robot::Robot(Motor *frontL, Motor *frontR, Motor *backL, Motor *backR ) {
 	this->frontL = *frontL;
@@ -11,7 +12,7 @@ int Robot::getDirection(void) {
 	return this->direction;
 }
 
-void Robot::setDirection(Direction whichWay, int duration) {
+void Robot::setDirection(Direction whichWay, uint8_t duration = 0) {
 	switch(whichWay) {
 		case FORWARDS:
 		this->frontL.goFwd();
@@ -63,8 +64,12 @@ void Robot::setDirection(Direction whichWay, int duration) {
 		break;
 	}
 
-	//set the timer?
-
-	//check the duration value -> if duration == 0 then do not set the interrupt timer
+	//if duration > 0
+	if (duration > 0) {
+		//set the timer
+		TCNT0 = 0x00 - duration;
+		TIMSK0 |= (1 << TOIE0);
+	}
 }
+
 
