@@ -40,12 +40,12 @@ int main(void)
 	Robot myBot = Robot(&FL, &FR, &BL, &BR);
 	botPtr = &myBot;
 	myBot.setDirection(STOPPED, 0);
-	myBot.setDirection(FORWARDS, 10);
-	myBot.setDirection(FAST_LEFT, 10);
-	myBot.setDirection(SLOW_LEFT, 10);
-	myBot.setDirection(FAST_RIGHT, 10);
+	//myBot.setDirection(FORWARDS, 10);
+	//myBot.setDirection(FAST_LEFT, 10);
+	//myBot.setDirection(SLOW_LEFT, 10);
+	//myBot.setDirection(FAST_RIGHT, 10);
 	myBot.setDirection(SLOW_RIGHT, 10);
-	myBot.setDirection(STOPPED, 10);
+	//myBot.setDirection(STOPPED, 10);
 
 	//initialise the timer & interrupt vector
 	
